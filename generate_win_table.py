@@ -31,3 +31,16 @@ def generate_win_table(moves, n) :
 
     win_table = np.where(player1_wins, 1, 2)
     return win_table
+
+def find_win_condition(win_table) :
+    condition = np.where(win_table == 1, True, False)
+    condition = np.where(condition)[0]
+    return condition
+
+if __name__ == "__main__" :
+    moves = [1, 3, 4]
+    n = 10
+    win_table = generate_win_table(moves, n)
+    print(win_table)
+    print(find_win_condition(win_table))
+    print("Done")
