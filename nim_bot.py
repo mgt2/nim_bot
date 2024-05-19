@@ -1,7 +1,6 @@
 import numpy as np
 import random
 from generate_win_table import generate_win_table
-from find_win_condition import find_win_condition
 
 def ask_n () :
     n = int(input("Enter the number of sticks: "))
