@@ -39,13 +39,15 @@ def collect_bot_data(max_n, moves_list, bot_accs, num_trials_each=100) :
     return compiled_arrays, ground_truths
 
 def collect_bot_data_grid(max_n, moves_list, min_bot_acc, max_bot_acc, acc_increment, num_trials_each=100) :
-    bot_accs = [(acc1, acc2) for acc1 in np.arange(min_bot_acc, max_bot_acc, acc_increment) for acc2 in np.arange(min_bot_acc, max_bot_acc, acc_increment)]
+    bot_accs = [(acc1, acc2) for acc1 in np.arange(min_bot_acc, max_bot_acc + acc_increment, acc_increment) for acc2 in np.arange(min_bot_acc, max_bot_acc + acc_increment, acc_increment)]
     compiled_arrays, ground_truths = collect_bot_data(max_n, moves_list, bot_accs, num_trials_each)
 
-    grid_array = np.zeros((len(moves_list), max_n + 1, len(np.arange(min_bot_acc, max_bot_acc, acc_increment)), len(np.arange(min_bot_acc, max_bot_acc, acc_increment))))
+    grid_array = np.zeros((len(moves_list), max_n + 1, len(np.arange(min_bot_acc, max_bot_acc + acc_increment, acc_increment)), len(np.arange(min_bot_acc, max_bot_acc + acc_increment, acc_increment))))
     for i in range(len(compiled_arrays)) :
         for j in range(max_n + 1) :
             for k in range(len(bot_accs)) :
                 (bot1_acc, bot2_acc) = bot_accs[k]
-                grid_array[i][j][bot1_acc][bot2_acc] = compiled_arrays[i][j][k]
+                grid_index_acc1 = int((bot1_acc - min_bot_acc) / acc_increment)
+                grid_index_acc2 = int((bot2_acc - min_bot_acc) / acc_increment)
+                grid_array[i][j][grid_index_acc1][grid_index_acc2] = compiled_arrays[i][j][k]
     return grid_array, ground_truths
