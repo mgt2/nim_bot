@@ -24,12 +24,12 @@ def interpret_win_condition(win_table) :
     print(', '.join(map(str, condition)) + " mod " + str(mod_num))
     return
     
-if __name__ == "__main__" :
-    moves = [1, 7, 8]
-    n = 100
-    win_table = generate_win_table(moves, n)
-    print(win_table)
-    interpret_win_condition(win_table)
+# if __name__ == "__main__" :
+#     moves = [1, 7, 8]
+#     n = 100
+#     win_table = generate_win_table(moves, n)
+#     # print(win_table)
+#     interpret_win_condition(win_table)
 
         
 
