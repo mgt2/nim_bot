@@ -24,12 +24,26 @@ def interpret_win_condition(win_table) :
     print(', '.join(map(str, condition)) + " mod " + str(mod_num))
     return
     
-# if __name__ == "__main__" :
-#     moves = [1, 7, 8]
-#     n = 100
-#     win_table = generate_win_table(moves, n)
-#     # print(win_table)
-#     interpret_win_condition(win_table)
+
+def find_wins_all(moves, n) :
+    win_table = generate_win_table(moves, n)
+    string = "For moves: "
+    for move in moves :
+        string += str(move) + ", "
+    string += ": "
+    print(string)
+    interpret_win_condition(win_table)
+    print()
+    print()
+    return
+
+if __name__ == "__main__" :
+    for i in range(3, 24) :
+        moves = [1, i, i+2]
+        n = 100
+        win_table = generate_win_table(moves, n)
+        # print(win_table)
+        find_wins_all(moves, n)
 
         
 
