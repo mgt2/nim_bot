@@ -3,7 +3,8 @@ from generate_win_table import generate_win_table
 from bot_play import play_bot_game
 
 def run_trials(n, moves, bot1_acc, bot2_acc, num_trials=100) :
-    return [play_bot_game(bot1_acc, bot2_acc, moves, n) for _ in range(num_trials)]
+    trials = [play_bot_game(bot1_acc, bot2_acc, moves, n) for _ in range(num_trials)]
+    return trials
 
 def analyze_trials(results) :
     player1_wins = np.sum(results)
@@ -22,7 +23,7 @@ def collect_bot_data_same_moves(max_n, moves, bot_accs, num_trials_each=100) :
     win_table = generate_win_table(moves, max_n)
     ground_truth = np.where(win_table == 1, 1, 0)
 
-    compiled_array = np.zeros(max_n + 1, len(bot_accs))
+    compiled_array = np.zeros((max_n + 1, len(bot_accs)))
     for n in range(max_n + 1) :
         compiled_array = collect_bot_data_one_game(n, moves, bot_accs, compiled_array, win_table, num_trials_each)
     return compiled_array, ground_truth

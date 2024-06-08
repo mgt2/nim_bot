@@ -39,7 +39,7 @@ def find_wins_all(moves, n) :
 
 if __name__ == "__main__" :
     for i in range(3, 24) :
-        moves = [1, i, i+2]
+        moves = [1, i, i+2, i+3]
         n = 100
         win_table = generate_win_table(moves, n)
         # print(win_table)

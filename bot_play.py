@@ -35,4 +35,13 @@ def play_bot_game(bot1_acc, bot2_acc, moves, n) :
         if n == 0 :
             return player1_turn
         player1_turn = not player1_turn
-    return RuntimeError
+    return player1_turn
+
+
+# if __name__ == "__main__" :
+#     bot1_acc = 1
+#     bot2_acc = 1
+#     moves = [1, 2, 3]
+#     n = 8
+#     print(play_bot_game(bot1_acc, bot2_acc, moves, n))
+#     print("Done")
