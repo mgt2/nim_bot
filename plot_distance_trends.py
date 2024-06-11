@@ -52,7 +52,7 @@ if __name__ == "__main__" :
         'n_increment' : 1,
 
         'move_indices' : [0, 1, 20],
-        'player_wins' : [1],
+        'player_wins' : [1,2],
     }
 
     plot_distance_trends(new_dist_data, plot_info, dist_data['moves'])

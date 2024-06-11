@@ -59,10 +59,10 @@ def write_to_file(data, file_path="input_data/data.json") :
     print("Data has been written to", file_path)
     return
 #------------------------------------------------------------
-# DATA PLOTTING CODE
+# DISTANCE DATA STORING CODE
 
 if __name__ == "__main__" :
-    data = load_data("input_data/data.json")
+    data = load_data("input_data/x_x+1_x+2.json")
 
     ground_truths = []
     for move in data['moves'] :
@@ -78,9 +78,8 @@ if __name__ == "__main__" :
     output_data['moves'] = data['moves']
     for i in range(len(win_rate_distances)) :
         output_data[str(i)] = win_rate_distances[i].tolist()
-    write_to_file(output_data, "output_data/distances_x_x+1.json")
+    write_to_file(output_data, "output_data/distances_x_x+1_x+2.json")
 
-    plot_distances(win_rate_distances, data['moves'])
 #------------------------------------------------------------
 # DATA GENERATION CODE
 
@@ -90,8 +89,8 @@ if __name__ == "__main__" :
 #     num_sticks = 100
 #     data = {}
 
-#     for i in range(3, 24) :
-#         moves.append([1, i, i+1])
+#     for i in range(2, 24) :
+#         moves.append([1, i, i+3])
     
 #     for i in range(0, 11) :
 #         for j in range(0, 11) :
@@ -101,7 +100,7 @@ if __name__ == "__main__" :
 #     data['accs'] = accs
 #     data['n'] = num_sticks
 
-#     write_to_file(data)
+#     write_to_file(data, "input_data/x_x+3.json")
 #------------------------------------------------------------
 # SIMPLE PLOT TESTING CODE
 
