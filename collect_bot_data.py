@@ -52,3 +52,4 @@ def collect_bot_data_grid(max_n, moves_list, min_bot_acc, max_bot_acc, acc_incre
                 grid_index_acc2 = int((bot2_acc - min_bot_acc) / acc_increment)
                 grid_array[i][j][grid_index_acc1][grid_index_acc2] = compiled_arrays[i][j][k]
     return grid_array, ground_truths
+

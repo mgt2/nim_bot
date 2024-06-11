@@ -1,16 +1,25 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import numpy as np
 import json
 from generate_win_table import generate_win_table
 from collect_bot_data import collect_bot_data_grid
 from distance import calc_win_distance
 
-def plot_data(distances, moves_list) :
-    fig, ax = plt.subplots(1, len(distances))
+def plot_distances(distances, moves_list) :
     for i in range(len(distances)) :
-        ax[i].imshow(distances[i])
-        ax[i].set_title("Moves: " + str(moves_list[i]))
-    plt.show()
+        for j in range(len(distances[i])) :
+            plt.imshow(distances[i][j], cmap='hot', interpolation='nearest')
+            plt.title("Win Rate Distance for " + str(moves_list[i]) + " starting with " + str(j) + " sticks")
+            plt.xlabel("Bot 2 Accuracy (0-10)")
+            plt.ylabel("Bot 1 Accuracy (0-10)")
+            for k in range(len(distances[i][j])):
+                for l in range(len(distances[i][j][k])):
+                    plt.text(l, k, "{:.2f}".format(distances[i][j][k][l]), ha='center', va='center', color='green')
+
+            # Add a colorbar to show the mapping of values to colors
+            plt.colorbar()
+
+            plt.show()
     return
 
 def load_data(data_file_path) :
@@ -36,12 +45,18 @@ if __name__ == "__main__" :
         ground_truths.append(generate_win_table(move, data['n']))
     data['ground_truths'] = ground_truths
 
-    grid = collect_bot_data_grid(data['n'], data['moves'], 0, 1, 0.1)
+    grid, perfect_play = collect_bot_data_grid(data['n'], data['moves'], 0, 1, 0.1)
     data['grid'] = grid
 
-    win_rate_distances = calc_win_distance(grid, ground_truths)
+    win_rate_distances = calc_win_distance(grid, perfect_play)
 
-    plot_data(win_rate_distances, data['moves'])
+    output_data = {}
+    output_data['moves'] = data['moves']
+    for i in range(len(win_rate_distances)) :
+        output_data[str(i)] = win_rate_distances[i].tolist()
+    write_to_file(output_data, "output_data/distances_x_x+1.json")
+
+    plot_distances(win_rate_distances, data['moves'])
 #------------------------------------------------------------
 # DATA GENERATION CODE
 
@@ -64,4 +79,15 @@ if __name__ == "__main__" :
 
 #     write_to_file(data)
 #------------------------------------------------------------
-    
+# SIMPLE PLOT TESTING CODE
+
+# if __name__ == "__main__" :
+#     n = 10
+#     moves = [[1, 2, 3]]
+#     min_acc = 0
+#     max_acc = 1
+
+#     grid, truth = collect_bot_data_grid(n, moves, min_acc, max_acc, 0.1)
+#     distances = calc_win_distance(grid, truth)
+#     plot_distances(distances, moves)
+   

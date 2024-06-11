@@ -26,6 +26,10 @@ def make_move(n, moves, win_table, prob_correct_move) :
 def play_bot_game(bot1_acc, bot2_acc, moves, n) :
     win_table = generate_win_table(moves, n)
     player1_turn = True
+
+    if n <= 0 :
+        return False
+    
     while n > 0 :
         if player1_turn :
             move = make_move(n, moves, win_table, bot1_acc)
