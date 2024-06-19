@@ -21,7 +21,7 @@ def find_win_condition(win_table) :
 
 def interpret_win_condition(win_table) :
     condition, mod_num = find_win_condition(win_table)
-    print(', '.join(map(str, condition)) + " mod " + str(mod_num))
+    print("Player 1 wins iff n=" + ', '.join(map(str, condition)) + " mod " + str(mod_num))
     return
     
 
@@ -38,12 +38,11 @@ def find_wins_all(moves, n) :
     return
 
 if __name__ == "__main__" :
-    for i in range(3, 24) :
-        moves = [1, i, i+2, i+3]
-        n = 100
-        win_table = generate_win_table(moves, n)
-        # print(win_table)
-        find_wins_all(moves, n)
+    moves = [1, 10, 11]
+    n = 100
+    win_table = generate_win_table(moves, n)
+    # print(win_table)
+    find_wins_all(moves, n)
 
         
 

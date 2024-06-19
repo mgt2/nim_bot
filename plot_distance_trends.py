@@ -40,19 +40,19 @@ if __name__ == "__main__" :
     new_dist_data = configure_distance_trends(dist_data)
 
     plot_info = {
-        'min_acc_p1' : 0.1,
-        'max_acc_p1' : 1,
+        'min_acc_p1' : 0.9,
+        'max_acc_p1' : 0.9,
         'acc_increment_p1' : 0.3,
-        'min_acc_p2' : 0.8,
-        'max_acc_p2' : 0.8,
+        'min_acc_p2' : 0.9,
+        'max_acc_p2' : 0.9,
         'acc_increment_p2' : 0.1,
 
-        'min_n' : 0,
+        'min_n' : 20,
         'max_n' : 100,
         'n_increment' : 1,
 
-        'move_indices' : [0, 1, 20],
-        'player_wins' : [1,2],
+        'move_indices' : [0,1,2],
+        'player_wins' : [2],
     }
 
     plot_distance_trends(new_dist_data, plot_info, dist_data['moves'])
