@@ -27,7 +27,7 @@ def ask_user_turn() :
     return user_turn
 
 def calculate_strength(n, moves) :
-    strength = int(input("What strength would you like the computer to play at? (integer 0-10) "))
+    strength = float(input("What strength would you like the computer to play at? (integer 0-10) "))
     # If you want a more complex strength calculation, you can use the following code:
     expected_iters = n / np.mean(np.array(moves))
     return (strength/10)**(2/expected_iters)
